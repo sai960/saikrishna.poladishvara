@@ -1,0 +1,130 @@
+
+<html>
+<head>
+<style>
+table {
+  border-collapse: collapse;
+}
+table, th, td {
+  border: 1px solid black;
+}
+tr:hover td{
+background-color:green;
+color;white;
+}09:21 AM 28-07-2020
+table {
+  width: 100%;
+}
+
+th {
+background-color: #FFA133;
+  color: white;
+  height: 50px;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+selected{color: green;}
+
+</style>
+</head>
+
+<body>
+<h2 id='demo' align="center" >PINCODE LOCATOR</h2>
+
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["pincode"].value;
+
+
+  if (x == "") {
+    alert("please enter pincode");
+    document.myForm.pincode.focus() ;
+    return false;
+  }
+if(x.length<6){
+alert("PINCODE must be 6 digits long");
+return false;
+}
+if(x.length>6){
+alert("PINCODE must be 6 digits long");
+return false;
+}
+
+}
+</script>
+
+
+
+<form name="myForm" action="https://api.postalpincode.in/pincode/500082" method="GET" onsubmit="return validateForm()" align="center">
+ 
+ <label for="pincode">PINCODE</label>
+
+  <input type="number" id="pincode" name="pincode" value=" " pattern=“^[0–9]$” ><br><br>
+  <input type="submit" value="Submit">
+
+</form>
+<table> </table>
+
+<script>
+let pincode = [
+   {"Name":"Badangpet","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Hyderabad","Division":"Hyderabad South East","Region":"Hyderabad City","Block":"Hyderabad","State":"Telangana","Country":"India","Pincode":"500058"},
+{"Name":"Kanchanbagh","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Hyderabad","Division":"Hyderabad South East","Region":"Hyderabad City","Block":"Bandlaguda","State":"Telangana","Country":"India","Pincode":"500058"}
+];
+function generateTableHead(table, data) {
+  let thead = table.createTHead();
+  let row = thead.insertRow();
+  for (let key of data) {
+    let th = document.createElement("th");
+    let text = document.createTextNode(key);
+    th.appendChild(text);
+    row.appendChild(th);
+  }
+}
+
+function generateTable(table, data) {
+  for (let element of data) {
+    let row = table.insertRow();
+    for (key in element) {
+      let cell = row.insertCell();
+      let text = document.createTextNode(element[key]);
+      cell.appendChild(text);
+    }
+  }
+}
+
+let table = document.querySelector("table");
+let data = Object.keys(pincode[0]);
+generateTableHead(table, data);
+generateTable(table, pincode);</script>
+
+<p>NOTE:the following table depicts the data of pincode:500058</p>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
