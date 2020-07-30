@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: black;
+      align-items: center;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    h3{
+      color:red;
+    }
+    p{
+      font-size: 20px;
+      color: white;
+      font-weight: 900;
+    }
+
+    td,
+    th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background-color: black;
+      color: white;
+    }
+	tr:nth-child(2)
+{
+  background-color: green;
+  color:white;
+}
+  </style>
+  <script>
+
+
+    function myFun() {
+     
+      document.getElementById("Save").onclick = function fun() {
+        var x = document.forms["myForm"]["pin_code"].value;
+        if (x.length === 6) {
+          var Url = "https://api.postalpincode.in/pincode/" + x;
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', Url, true);
+          xhr.send();
+          xhr.onreadystatechange = processRequest;
+          function processRequest(e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              var response1 = JSON.parse(xhr.responseText)[0].PostOffice;
+              console.log(response1, response1.length)
+              var txt = "";
+              var txt1 = ""
+              txt += "<table border='1'>"
+              for (let x = 0; x <= response1.length; x++) {
+                if (x === 0) {
+                  for (y in response1[x]) {
+                    txt1 += "<th>" + y + "</th>";
+                  }
+                  txt += "<tr>" + txt1 + "</tr>";
+                  txt1 = ''
+                }
+                for (y in response1[x]) {
+                  txt1 += "<td>" + response1[x][y] + "</td>";
+                }
+                txt += "<tr>" + txt1 + "</tr>";
+                txt1 = ''
+
+              }
+              txt += "</table>"
+              document.getElementById("demo").innerHTML = txt;
+            }
+          }
+        }
+        else {
+          document.getElementById("demo").innerHTML = "<h3>"+"Please enter a valid PINCODE"+"<h3>";
+        }
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+  <p >Please enter PINCODE</p>
+  <form name="myForm" autocomplete="off" >
+    <input type="text" name="pin_code" placeholder="enter pincode" />
+    <button type="button" id="Save" onclick="myFun()">Search</button>
+  </form>
+
+  <p id="demo"></p>
+   
+
+</body>
+
+</html>
