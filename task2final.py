@@ -1,6 +1,9 @@
 def Email(lst):
+    
     dic={}
+    
     for i in lst:
+        
         lst1=i.split('.')
         lst2=lst1[0].split('@')
         doamin=lst1[1]
@@ -26,13 +29,19 @@ def TotalNumOfEmployees(data):
     return dic
    
    
-lst=['sai@google.com','ravi@amazon.com','uday@amazon.in','kiran@salesforce.com','sunil@salesforce.com','madhu@microsoft.com','tharun@google.com']
+lst=['sai@google.com','ravi@amazon.com','uday@amazon.in','kiran@salesforce.com','sunil@salesforce.com','maruthi@amazon.in','nawaz@google.io','madhu@microsoft.com','tharun@google.com']
 data=Email(lst)
+i=0
+
 for domain in data:
+    
     print("I belongs to this doamin---",domain)
     for comp in data[domain]:
         print("And we are from [",comp,"] and  employee details are as follow:")
         for emp in data[domain][comp]:
-            print('  ',emp,'  ')
-    print('')
+            i+=1
+        print(i)
+        i=0
+        
+print(data)
 
