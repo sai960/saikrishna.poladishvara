@@ -4,17 +4,17 @@
 <head>
   <style>
     body {
-      background-color: black;
+      background-color: #f69e7b ;
       align-items: center;
       text-align: center;
-      font-family: sans-serif;
+      font-family: courier;
     }
     h3{
       color:red;
     }
     p{
       font-size: 20px;
-      color: white;
+      color: #383e56;
       font-weight: 900;
     }
 
@@ -28,12 +28,12 @@
       padding-top: 12px;
       padding-bottom: 12px;
       text-align: center;
-      background-color: black;
-      color: white;
+      background-color: #CD5C5C;
+      color: yellow;
     }
-	tr:nth-child(2)
+tr:nth-child(2)
 {
-  background-color: green;
+  background-color: #4CAF50;
   color:white;
 }
   </style>
@@ -60,7 +60,11 @@
               for (let x = 0; x <= response1.length; x++) {
                 if (x === 0) {
                   for (y in response1[x]) {
-                    txt1 += "<th>" + y + "</th>";
+                    
+if(y==="Pincode"){
+                      y="PIN Code"
+                    }
+                    txt1 += "<th>" + y .replace(/([a-z])([A-Z])/g, '$1 $2') + "</th>";
                   }
                   txt += "<tr>" + txt1 + "</tr>";
                   txt1 = ''
@@ -87,9 +91,9 @@
 </head>
 
 <body>
-  <p >Please enter PINCODE</p>
+  <p >Please enter PIN Code</p>
   <form name="myForm" autocomplete="off" >
-    <input type="text" name="pin_code" placeholder="enter pincode" />
+    <input type="text" name="pin_code" placeholder="enter PIN Code" />
     <button type="button" id="Save" onclick="myFun()">Search</button>
   </form>
 
