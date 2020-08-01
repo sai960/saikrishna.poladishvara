@@ -1,47 +1,39 @@
-def Email(lst):
-    
+
+def Email(list):
     dic={}
-    
-    for i in lst:
+    for i in list:
+        list1=i.split('@')
         
-        lst1=i.split('.')
-        lst2=lst1[0].split('@')
-        doamin=lst1[1]
-        company_name=lst2[1]
-        emp_name=lst2[0]
-        if(doamin in dic):
-            if(company_name in dic[doamin]):
-                dic[doamin][company_name].append(emp_name)
-            else:
-                dic[doamin][company_name]=[]
-                dic[doamin][company_name].append(emp_name)
+        domain=list1[1]
+        ename=list1[0]
+        if(domain in dic):
+            dic[domain].append(ename)
+        
            
         else:
-            dic[doamin]={}
-            dic[doamin][company_name]=[]
-            dic[doamin][company_name].append(emp_name)
+            dic[domain]={}
+            dic[domain]=[]
+            dic[domain].append(ename)
+
     return dic
 def TotalNumOfEmployees(data):
     dic={}
     lst=data.keys()
-    for i in lst:
+    for i in list:
         dic[i]=len( TotalEmployees(data,i))    
     return dic
-   
-   
-lst=['sai@google.com','ravi@amazon.com','uday@amazon.in','kiran@salesforce.com','sunil@salesforce.com','maruthi@amazon.in','nawaz@google.io','madhu@microsoft.com','tharun@google.com']
-data=Email(lst)
-i=0
 
+list=['sai@google.com','ravi@amazon.com','sai@google.co.in','uday@amazon.in','kiran@salesforce.com','sunil@salesforce.com','maruthi@amazon.in','nawaz@google.io','madhu@microsoft.com','tharun@google.com']
+
+data=Email(list)
+i=0
 for domain in data:
     
-    print("I belongs to this doamin---",domain)
-    for comp in data[domain]:
-        print("And we are from [",comp,"] and  employee details are as follow:")
-        for emp in data[domain][comp]:
-            i+=1
-        print(i)
-        i=0
+    print("The number of employees in the domain -",domain)
+    
+    for emp in data[domain]:
+        i+=1
+    print(i)
+    i=0
         
 print(data)
-
